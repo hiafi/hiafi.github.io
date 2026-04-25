@@ -1,4 +1,4 @@
-var MECHANICS = [M11_ARENA_SPLIT];
+var MECHANICS = [M11_ARENA_SPLIT, M11_STAMPEDE];
 
 var state = {
   role: null,
