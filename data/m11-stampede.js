@@ -1,0 +1,41 @@
+var M11_STAMPEDE = {
+  id: 'm11-stampede',
+  label: 'M11 — Stampede',
+  arenaImage: 'assets/m11-arena.png',
+  nodes: [
+    {
+      id: 'stampede-bait',
+      label: 'Bait',
+      question: 'Stampede: Bait the charge — where do you stand?',
+      answers: {
+        T1: { x: 150, y: 250 },
+        T2: { x: 350, y: 250 },
+        H1: { x: 250, y: 150 },
+        H2: { x: 250, y: 350 },
+        M1: { x: 180, y: 180 },
+        M2: { x: 320, y: 180 },
+        R1: { x: 180, y: 320 },
+        R2: { x: 320, y: 320 },
+      },
+      isStart: true,
+      children: ['stampede-dodge'],
+    },
+    {
+      id: 'stampede-dodge',
+      label: 'Dodge',
+      question: 'Stampede: Dodge the cleave — where do you go?',
+      answers: {
+        T1: { x: 250, y: 150 },
+        T2: { x: 250, y: 350 },
+        H1: { x: 150, y: 250 },
+        H2: { x: 350, y: 250 },
+        M1: { x: 320, y: 320 },
+        M2: { x: 180, y: 320 },
+        R1: { x: 320, y: 180 },
+        R2: { x: 180, y: 180 },
+      },
+      isStart: false,
+      children: [],
+    },
+  ],
+};

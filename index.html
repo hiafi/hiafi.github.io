@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FF Flashcards</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="screen-role" class="screen active">
+    <h1>FF Flashcards</h1>
+    <p>Select your role:</p>
+    <div class="role-grid">
+      <button class="role-btn" data-role="T1">T1</button>
+      <button class="role-btn" data-role="T2">T2</button>
+      <button class="role-btn" data-role="H1">H1</button>
+      <button class="role-btn" data-role="H2">H2</button>
+      <button class="role-btn" data-role="M1">M1</button>
+      <button class="role-btn" data-role="M2">M2</button>
+      <button class="role-btn" data-role="R1">R1</button>
+      <button class="role-btn" data-role="R2">R2</button>
+    </div>
+  </div>
+
+  <div id="screen-mechanic" class="screen">
+    <h2>Choose a mechanic:</h2>
+    <div id="mechanic-list"></div>
+    <button id="btn-back-role">← Back</button>
+  </div>
+
+  <div id="screen-game" class="screen">
+    <canvas id="arena" width="500" height="500"></canvas>
+    <div id="game-controls">
+      <button id="btn-back-mechanic">← Change Mechanic</button>
+    </div>
+  </div>
+
+  <script src="scoring.js"></script>
+  <script src="graph.js"></script>
+  <script src="canvas.js"></script>
+  <script src="data/m11-arena-split.js"></script>
+  <script src="data/m11-stampede.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
