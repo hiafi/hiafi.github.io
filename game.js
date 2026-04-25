@@ -53,7 +53,7 @@ function selectMechanic(mechanic) {
 }
 
 function startRun() {
-  state.currentNode = pickRandomStart(state.mechanic);
+  state.currentNode = pickRandomStart(state.mechanic, state.role);
   state.phase = 'playing';
   renderGame();
 }
@@ -63,6 +63,10 @@ function renderGame() {
   var ctx = canvas.getContext('2d');
   drawArena(ctx, state.arenaImage);
   if (state.phase === 'playing' && state.currentNode) {
+    drawSpots(ctx, state.currentNode.spots);
+    if (state.mechanic.markers) {
+      drawMarkers(ctx, state.mechanic.markers);
+    }
     drawQuestion(ctx, state.currentNode.question);
     drawScoring(ctx, state.scoring.streak, getSuccessRate(state.scoring));
   }
@@ -78,16 +82,13 @@ function handleClick(event) {
   var clickX = (event.clientX - rect.left) * scaleX;
   var clickY = (event.clientY - rect.top) * scaleY;
 
-  var answer = getAnswer(state.currentNode, state.role);
-  if (!answer) return;
-
-  var correct = isCorrectClick(clickX, clickY, answer);
+  var correct = isCorrectClick(clickX, clickY, state.currentNode);
   state.scoring = recordAttempt(state.scoring, correct);
 
   if (correct) {
     advanceNode();
   } else {
-    showFeedback(answer);
+    showFeedback(state.currentNode.spots[state.currentNode.answer]);
   }
 }
 

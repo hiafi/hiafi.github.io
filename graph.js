@@ -1,4 +1,4 @@
-var ZONE_RADIUS = 8;
+var ZONE_RADIUS = 20;
 
 function getNode(mechanic, id) {
   for (var i = 0; i < mechanic.nodes.length; i++) {
@@ -7,20 +7,20 @@ function getNode(mechanic, id) {
   return null;
 }
 
-function pickRandomStart(mechanic) {
-  var starts = [];
+function pickRandomStart(mechanic, role) {
+  var candidates = [];
   for (var i = 0; i < mechanic.nodes.length; i++) {
-    if (mechanic.nodes[i].isStart) starts.push(mechanic.nodes[i]);
+    var node = mechanic.nodes[i];
+    if (node.isStart && node.validRoles.indexOf(role) !== -1) {
+      candidates.push(node);
+    }
   }
-  return starts[Math.floor(Math.random() * starts.length)];
+  return candidates[Math.floor(Math.random() * candidates.length)];
 }
 
-function getAnswer(node, role) {
-  return node.answers[role] || null;
-}
-
-function isCorrectClick(clickX, clickY, answer) {
-  var dx = clickX - answer.x;
-  var dy = clickY - answer.y;
+function isCorrectClick(clickX, clickY, node) {
+  var correct = node.spots[node.answer];
+  var dx = clickX - correct.x;
+  var dy = clickY - correct.y;
   return Math.sqrt(dx * dx + dy * dy) <= ZONE_RADIUS;
 }
