@@ -1,0 +1,41 @@
+var M11_ARENA_SPLIT = {
+  id: 'm11-arena-split',
+  label: 'M11 — Arena Split',
+  arenaImage: 'assets/m11-arena.png',
+  nodes: [
+    {
+      id: 'arena-split-spread',
+      label: 'Spread',
+      question: 'Arena Split: Spread — where do you go?',
+      answers: {
+        T1: { x: 125, y: 250 },
+        T2: { x: 375, y: 250 },
+        H1: { x: 175, y: 175 },
+        H2: { x: 325, y: 175 },
+        M1: { x: 175, y: 325 },
+        M2: { x: 325, y: 325 },
+        R1: { x: 250, y: 125 },
+        R2: { x: 250, y: 375 },
+      },
+      isStart: true,
+      children: ['arena-split-stack'],
+    },
+    {
+      id: 'arena-split-stack',
+      label: 'Stack',
+      question: 'Arena Split: Stack — where do you go?',
+      answers: {
+        T1: { x: 200, y: 250 },
+        T2: { x: 300, y: 250 },
+        H1: { x: 200, y: 250 },
+        H2: { x: 300, y: 250 },
+        M1: { x: 200, y: 250 },
+        M2: { x: 300, y: 250 },
+        R1: { x: 200, y: 250 },
+        R2: { x: 300, y: 250 },
+      },
+      isStart: false,
+      children: [],
+    },
+  ],
+};
