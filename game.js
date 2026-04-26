@@ -63,11 +63,14 @@ function renderGame() {
   var ctx = canvas.getContext('2d');
   drawArena(ctx, state.arenaImage);
   if (state.phase === 'playing' && state.currentNode) {
-    drawSpots(ctx, state.currentNode.spots);
+    var node = state.currentNode;
     if (state.mechanic.markers) {
       drawMarkers(ctx, state.mechanic.markers);
     }
-    drawQuestion(ctx, state.currentNode.question);
+    drawAdditionalDrawings(ctx, node.additionalDrawings, node.playerLoc);
+    var spots = state.mechanic.debugAllSpots || node.spots;
+    drawSpots(ctx, spots);
+    drawQuestion(ctx, node.question);
     drawScoring(ctx, state.scoring.streak, getSuccessRate(state.scoring));
   }
 }

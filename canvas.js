@@ -89,6 +89,44 @@ function drawSpots(ctx, spots) {
   }
 }
 
+function drawAdditionalDrawings(ctx, drawings, playerLoc) {
+  if (playerLoc) {
+    ctx.beginPath();
+    ctx.arc(playerLoc.x, playerLoc.y, 8, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(0, 0, 255, 0.9)';
+    ctx.fill();
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+  if (!drawings) return;
+  for (var i = 0; i < drawings.length; i++) {
+    var d = drawings[i];
+    if (d.type === 'line') {
+      var p0 = d.points[0] === 'player' ? playerLoc : d.points[0];
+      var p1 = d.points[1] === 'player' ? playerLoc : d.points[1];
+      ctx.beginPath();
+      ctx.moveTo(p0.x, p0.y);
+      ctx.lineTo(p1.x, p1.y);
+      ctx.strokeStyle = `rgba(${d.color.r},${d.color.g},${d.color.b},${d.color.a})`;
+      ctx.lineWidth = 4;
+      if (d.style == 'dotted') {
+        ctx.setLineDash([6, 4]);
+      }
+      
+      ctx.stroke();
+      ctx.setLineDash([]);
+    } else if (d.type === 'circle') {
+      var c = d.center === 'player' ? playerLoc : d.center;
+      ctx.beginPath();
+      ctx.arc(c.x, c.y, d.radius, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+  }
+}
+
 function drawScoring(ctx, streak, successRate) {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.55)';
   ctx.fillRect(0, CANVAS_HEIGHT - 36, CANVAS_WIDTH, 36);
