@@ -101,7 +101,7 @@ function advanceNode() {
     endSequence();
     return;
   }
-  state.currentNode = getNode(state.mechanic, children[0]);
+  state.currentNode = getNode(state.mechanic, children[Math.floor(Math.random() * children.length)]);
   state.phase = 'playing';
   renderGame();
 }

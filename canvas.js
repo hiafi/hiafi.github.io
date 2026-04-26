@@ -109,7 +109,7 @@ function drawAdditionalDrawings(ctx, drawings, playerLoc) {
       ctx.moveTo(p0.x, p0.y);
       ctx.lineTo(p1.x, p1.y);
       ctx.strokeStyle = `rgba(${d.color.r},${d.color.g},${d.color.b},${d.color.a})`;
-      ctx.lineWidth = 4;
+      ctx.lineWidth = d.width || 4;
       if (d.style == 'dotted') {
         ctx.setLineDash([6, 4]);
       }
